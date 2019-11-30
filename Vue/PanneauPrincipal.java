@@ -3,6 +3,8 @@ package Vue;
 
 
 
+import Model.ImageModel;
+
 import java.awt.*;
 
 import java.awt.image.BufferedImage;
@@ -20,30 +22,45 @@ public class PanneauPrincipal extends JPanel {
     private static final long serialVersionUID = 1L;
 
 
-    public PanneauPrincipal()  {
-        super();
-        GridLayout experimentLayout = new GridLayout(1,1);
-        this.setLayout(experimentLayout);
-        PanneauImage panneauImage = new PanneauImage();
-       add(panneauImage, BorderLayout.CENTER);
-
-        JPanel b2 = new JPanel();
+    public PanneauPrincipal( ImageModel imageModel)  {
 
 
-        GridLayout experimentLayouts = new GridLayout(2,2);
-       PanneauPerspective pp1 = new PanneauPerspective();
-        PanneauPerspective pp2 = new PanneauPerspective();
 
-        this.setLayout(experimentLayouts);
-        this.add(pp1);
-        this.add(pp2);
+        initPanneau(imageModel);
+
+
     }
 
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+   public void initPanneau(ImageModel imageModel)
+   {
+       JPanel haut = new JPanel(new GridLayout(1,1));
+       JPanel milieu = new JPanel(new GridLayout(1,2));
+       JPanel bas = new JPanel(new GridLayout(1,1));
 
-    }
+       PanneauImage panneauImage = new PanneauImage(imageModel);
+       panneauImage.setPreferredSize(new Dimension(300,200));
+       haut.add(panneauImage);
+
+       PanneauImage perspective1 = new PanneauImage(imageModel);
+       perspective1.setPreferredSize(new Dimension(400,300));
+       milieu.add(perspective1);
+
+       PanneauImage perspective2 = new PanneauImage(imageModel);
+       perspective2.setPreferredSize(new Dimension(400,300));
+       milieu.add(perspective2);
+
+
+PanneauBoutons panneauBoutons = new PanneauBoutons();
+
+       panneauBoutons.setPreferredSize(new Dimension(800,100));
+       bas.add(panneauBoutons);
+       add(haut,BorderLayout.NORTH);
+       add(milieu,BorderLayout.CENTER);
+       add(bas);
+
+   }
+
+
 
 
 
