@@ -11,7 +11,7 @@ import javax.swing.*;
 public abstract  class ButListener extends AbstractAction {
 
     private ImageModel img;
-    protected final static GestionnaireCommande manager = GestionnaireCommande.getInstance();
+    public  GestionnaireCommande gestionnaireDeCommande = GestionnaireCommande.getInstance();
 
     public ButListener(String name, ImageModel img) {
         super(name);
@@ -26,7 +26,5 @@ public abstract  class ButListener extends AbstractAction {
         this.img = img;
     }
 
-    public static GestionnaireCommande getManager() {
-        return manager;
-    }
+
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Constantes;
 import Model.ImageModel;
 
 import java.awt.*;
@@ -94,9 +95,10 @@ public class PerpectiveController implements MouseListener, MouseWheelListener, 
     public void mouseWheelMoved(MouseWheelEvent e) {
      if(e.getWheelRotation() < 1) {
       System.out.println(img.getMyPerspective().getNum_zoom());
-      GestionnaireCommande.getInstance().doCommand(new CommandZoom(img,"plus"));
+      GestionnaireCommande.getInstance().doCommand(new CommandZoom(img, Constantes.PLUS));
+
      } else {
-      GestionnaireCommande.getInstance().doCommand(new CommandZoom(img,"moins"));
+      GestionnaireCommande.getInstance().doCommand(new CommandZoom(img,Constantes.MOINS));
      }
     }
 }

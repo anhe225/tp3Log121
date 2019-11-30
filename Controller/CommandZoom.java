@@ -1,6 +1,7 @@
 package Controller;
 
 import Interfaces.Icommand;
+import Model.Constantes;
 import Model.ImageModel;
 
 public class CommandZoom extends  Command implements Icommand {
@@ -21,21 +22,21 @@ public class CommandZoom extends  Command implements Icommand {
 
     @Override
     public void execute() {
-        if (this.getValue().equals("plus")){
-            img.getMyPerspective().changeZoom( ZOOM_EFFECT);
+        if (this.getValue().equals(Constantes.PLUS)){
+            img.getMyPerspective().changeZoom(Constantes.ZOOM_EFFECT);
         }else {
 
-            img.getMyPerspective().changeZoom(-ZOOM_EFFECT);
+            img.getMyPerspective().changeZoom(- Constantes.ZOOM_EFFECT);
         }
     }
 
     @Override
     public void undo() {
-        if (this.getValue().equals("plus")){
-            img.getMyPerspective().changeZoom( -ZOOM_EFFECT);
+        if (this.getValue().equals(Constantes.PLUS)){
+            img.getMyPerspective().changeZoom( - Constantes.ZOOM_EFFECT);
         }else {
 
-            img.getMyPerspective().changeZoom( ZOOM_EFFECT);
+            img.getMyPerspective().changeZoom( Constantes.ZOOM_EFFECT );
         }
     }
 }

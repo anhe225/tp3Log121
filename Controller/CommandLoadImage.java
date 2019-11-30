@@ -1,6 +1,7 @@
 package Controller;
 
 import Interfaces.Icommand;
+import Model.Constantes;
 import Model.ImageModel;
 import jdk.jshell.spi.ExecutionControl;
 
@@ -19,9 +20,9 @@ public class CommandLoadImage extends Command implements Icommand {
     @Override
     public void execute() {
         JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        fileChooser.setDialogTitle("Choisir une sauvegarde");
+        fileChooser.setDialogTitle(Constantes.CHOISIR_SA_SAUVEGARDE);
         fileChooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filtre = new FileNameExtensionFilter(".txt", "txt");
+        FileNameExtensionFilter filtre = new FileNameExtensionFilter(Constantes.TYPE_FICHIER, Constantes.TXT);
         fileChooser.addChoosableFileFilter(filtre);
 
         int returnValue = fileChooser.showOpenDialog(null);
@@ -44,7 +45,7 @@ public class CommandLoadImage extends Command implements Icommand {
                 o.close();
                 f.close();
             } catch (FileNotFoundException ex) {
-                System.out.println("Fichier Introuvable");
+                System.out.println(Constantes.FICHIER_INTROUVABLE);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             } catch (ClassNotFoundException e1) {
@@ -55,6 +56,6 @@ public class CommandLoadImage extends Command implements Icommand {
 
     @Override
     public void undo() {
-       System.out.println("pas de Undo pour le moment");
+       System.out.println(Constantes.UNDO_INTROUVABLE);
     }
 }

@@ -20,11 +20,13 @@ public class PanneauBoutons extends JPanel  {
     private JPanel bas;
 
 
-    public PanneauBoutons() {
+    public PanneauBoutons(ImageModel img) {
         super();
 
         this.bas = new JPanel(new GridLayout(1,6));
+        this.img=img;
         createDirection();
+
     }
 
     public void createDirection(){

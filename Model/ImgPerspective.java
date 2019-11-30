@@ -48,11 +48,15 @@ public class ImgPerspective extends  Subject implements Serializable {
     public void translate(int x, int y){
         translate_image.x += x;
         translate_image.y += y;
+
+
         notifyObservers();
     }
 
     public void changeZoom(double num){
         num_zoom += num;
+
+
         notifyObservers();
     }
 }

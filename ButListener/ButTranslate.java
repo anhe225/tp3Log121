@@ -12,7 +12,7 @@ public class ButTranslate extends ButListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      this.manager.doCommand(new CommandTranslate(this.getImg(), point));
+      this.gestionnaireDeCommande.doCommand(new CommandTranslate(this.getImg(), point));
     }
 
     public ButTranslate(String name, ImageModel img, Point point) {

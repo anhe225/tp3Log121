@@ -20,7 +20,7 @@ public class ImageModel extends Subject implements Serializable, Observer {
     public ImageModel(BufferedImage img) {
         super();
         this.img = img;
-        this.index =0;
+        this.index = 0;
         initPerpective();
     }
 
@@ -36,9 +36,7 @@ public class ImageModel extends Subject implements Serializable, Observer {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
+
 
     public ImgPerspective[] getTabPerpective() {
         return tabPerpective;
@@ -48,11 +46,13 @@ public class ImageModel extends Subject implements Serializable, Observer {
         this.tabPerpective = tabPerpective;
     }
 
+
     public void initPerpective ()
     {
         this.tabPerpective = new ImgPerspective[2];
-        tabPerpective[0]= new ImgPerspective(this);
-        tabPerpective[1]= new ImgPerspective(this);
+        for(int i =0; i < tabPerpective.length; i++) {
+            tabPerpective[i] = new ImgPerspective(this);
+        }
     }
 
     public ImgPerspective getMyPerspective()

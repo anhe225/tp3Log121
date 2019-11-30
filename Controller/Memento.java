@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Constantes;
 import Model.ImageModel;
 import Model.ImgPerspective;
 
@@ -46,7 +47,7 @@ public class Memento {
 
     public void ecritureObjet(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
-        ImageIO.write(this.img, "png", out);
+        ImageIO.write(this.img, Constantes.PNG, out);
 
     }
 

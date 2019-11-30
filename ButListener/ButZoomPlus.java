@@ -1,6 +1,7 @@
 package ButListener;
 
 import Controller.CommandZoom;
+import Model.Constantes;
 import Model.ImageModel;
 
 import java.awt.event.ActionEvent;
@@ -12,6 +13,6 @@ public class ButZoomPlus extends ButListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.manager.doCommand(new CommandZoom(this.getImg(),"plus"));
+        this.gestionnaireDeCommande.doCommand(new CommandZoom(this.getImg(), Constantes.PLUS));
     }
 }

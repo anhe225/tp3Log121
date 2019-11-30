@@ -51,7 +51,7 @@ public class PanneauPrincipal extends JPanel implements Observer {
        milieu.add(perspective2);
 
 
-PanneauBoutons panneauBoutons = new PanneauBoutons();
+PanneauBoutons panneauBoutons = new PanneauBoutons(imageModel);
 
        panneauBoutons.setPreferredSize(new Dimension(800,100));
        bas.add(panneauBoutons);
