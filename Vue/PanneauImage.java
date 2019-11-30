@@ -1,6 +1,7 @@
 package Vue;
 
 import Controller.PerpectiveController;
+import Interfaces.Observer;
 import Model.ImageModel;
 import Model.ImgPerspective;
 
@@ -17,12 +18,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class PanneauImage extends JPanel {
+public class PanneauImage extends JPanel implements Observer {
 
     private ImageModel imageModel;
     private PerpectiveController perpectiveController;
     public PanneauImage( ImageModel imageModel) {
-        super();
+
         this.imageModel=imageModel;
         this.perpectiveController = new PerpectiveController(this.imageModel);
         setFocusable(true);
@@ -41,6 +42,11 @@ public class PanneauImage extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
+        if(imageModel.getImg() == null) {
+            System.out.println("no image");
+            return;
+        }
+
         BufferedImage image = imageModel.getImg();
 
         ImgPerspective perspective = imageModel.getMyPerspective();
@@ -52,5 +58,10 @@ public class PanneauImage extends JPanel {
         int y = perspective.getTranslate_image().y;
 
         g.drawImage(image,x,y,width,height,null);
+    }
+
+    @Override
+    public void update() {
+        repaint();
     }
 }

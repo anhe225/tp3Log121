@@ -1,11 +1,14 @@
 package Vue;
 
+import ButListener.ButTranslate;
+import ButListener.ButZoomPlus;
+import Interfaces.Observer;
 import Model.ImageModel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PanneauBoutons extends JPanel {
+public class PanneauBoutons extends JPanel  {
 
     private JButton bHaut;
     private JButton bBas;
@@ -19,23 +22,27 @@ public class PanneauBoutons extends JPanel {
 
     public PanneauBoutons() {
         super();
-        this.bHaut = bHaut;
+
         this.bas = new JPanel(new GridLayout(1,6));
         createDirection();
     }
 
     public void createDirection(){
-       /* bHaut = new JButton(new ActionTranslate(ImageModel,"Up",new Point(0,-10)));
-        bBas = new JButton(new ActionTranslate(ImageModel,"Down", new Point(0,10)));
-        bGauche = new JButton(new ActionTranslate(ImageModel,"Left", new Point(-10,0)));
-        bDroite = new JButton(new ActionTranslate(ImageModel,"Right",new Point(10,0))); */
 
-        bHaut = new JButton("haut");
-        bBas = new JButton("bas");
-        bGauche = new JButton("gauche");
-        bDroite = new JButton("bas");
-        bZoomPlus = new JButton("Zoom Plus");
-        bZoomMoins = new JButton("Zoom Moins");
+        Point pHaut = new Point(0,-15);
+        Point pBas = new Point(0,15);
+        Point pGauche = new Point(-15,0);
+        Point pDroite = new Point(15,0);
+
+
+        bHaut = new JButton(new ButTranslate("haut",img,pHaut));
+        bBas = new JButton(new ButTranslate("bas",img,pBas));
+        bGauche = new JButton(new ButTranslate("gauche",img,pGauche));
+        bDroite = new JButton(new ButTranslate("droite",img,pDroite));
+
+
+        bZoomPlus = new JButton(new ButZoomPlus("zoom plus",img));
+        bZoomMoins = new JButton(new ButZoomPlus("zoom moins",img));
 
 
 
@@ -51,4 +58,6 @@ public class PanneauBoutons extends JPanel {
 
 
     }
+
+
 }

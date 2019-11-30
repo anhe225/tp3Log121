@@ -1,5 +1,7 @@
 package Model;
 
+import Interfaces.Observer;
+
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
@@ -9,13 +11,14 @@ import java.io.Serializable;
  * avec les images
  */
 
-public class ImageModel implements Serializable {
+public class ImageModel extends Subject implements Serializable, Observer {
 
     private BufferedImage img;
     private int index;
     private ImgPerspective [] tabPerpective;
 
     public ImageModel(BufferedImage img) {
+        super();
         this.img = img;
         this.index =0;
         initPerpective();
@@ -62,10 +65,16 @@ public class ImageModel implements Serializable {
         this.img = new BufferedImage(largeur, longueur, img.TYPE_INT_ARGB);
     }
 
-  /**  @Override
+    @Override
     public void update() {
         notifyObservers();
+
     }
 
-  **/
+    public void modifyPerspectives(int val){
+        index = val;
+        update();
+    }
+
+
 }

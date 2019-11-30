@@ -1,5 +1,6 @@
 package Vue;
 
+import Interfaces.Observer;
 import Model.ImageModel;
 import Model.ImgPerspective;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class FenetrePrincipale extends JFrame implements PropertyChangeListener {
+public class FenetrePrincipale extends JFrame implements PropertyChangeListener, Observer {
 
     private static final long serialVersionUID = 1L;
     private static final String TITRE_FENETRE = "Laboratoire 3 : LOG121 -Automne 2019 Groupe 3";
@@ -21,6 +22,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
     private     BufferedImage bufferedImage;
     private ImageModel img;
     private ImgPerspective img_perspective;
+    private PanneauImage panneauImage;
 
     public FenetrePrincipale() {
         getImage();
@@ -30,6 +32,20 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 
         add(menuFenetre, BorderLayout.NORTH);
         add(panneauPrincipal);
+
+        img.Attach(this);
+
+        panneauImage=new PanneauImage(img);
+
+
+
+
+
+
+
+
+
+
         // Faire en sorte que le X de la fenêtre ferme la fenêtre
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(TITRE_FENETRE);
@@ -65,5 +81,12 @@ public void getImage(){
             repaint();
             System.out.println(evt.getNewValue());
         }
+    }
+
+    @Override
+    public void update() {
+        System.out.println("ANhe");
+        panneauImage.update();
+        repaint();
     }
 }

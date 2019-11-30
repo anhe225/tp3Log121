@@ -27,7 +27,18 @@ public class PerpectiveController implements MouseListener, MouseWheelListener, 
 
     @Override
     public void keyPressed(KeyEvent e) {
+     if((e.getKeyCode() == KeyEvent.VK_Z) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+      GestionnaireCommande.getInstance().undo();
+     }
 
+     if((e.getKeyCode() == KeyEvent.VK_Y) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+      GestionnaireCommande.getInstance().redo();
+     }
+
+     if((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
+      CommandSaveImage commande = new CommandSaveImage(img);
+      commande.execute();
+     }
     }
 
     @Override
@@ -43,11 +54,19 @@ public class PerpectiveController implements MouseListener, MouseWheelListener, 
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+     default_point = new Point(e.getX(), e.getY());
+     e.getComponent().setCursor(new Cursor(Cursor.MOVE_CURSOR));
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
+     e.getComponent().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+     int deltaX = e.getX() - default_point.x;
+     int deltaY = e.getY() - default_point.y;
+
+     GestionnaireCommande.getInstance().doCommand(new CommandTranslate(img, new Point(deltaX, deltaY)));
 
     }
 
@@ -73,6 +92,11 @@ public class PerpectiveController implements MouseListener, MouseWheelListener, 
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-
+     if(e.getWheelRotation() < 1) {
+      System.out.println(img.getMyPerspective().getNum_zoom());
+      GestionnaireCommande.getInstance().doCommand(new CommandZoom(img,"plus"));
+     } else {
+      GestionnaireCommande.getInstance().doCommand(new CommandZoom(img,"moins"));
+     }
     }
 }

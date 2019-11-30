@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
-public class ImgPerspective implements Serializable {
+public class ImgPerspective extends  Subject implements Serializable {
 
     private Point translate_image;
     private double num_zoom ;
@@ -15,7 +15,8 @@ public class ImgPerspective implements Serializable {
         this.img = img;
         this.num_zoom=1.0;
         this.translate_image = new Point();
-        //addObserver(img);
+        Attach(img);
+
     }
 
 
@@ -47,11 +48,11 @@ public class ImgPerspective implements Serializable {
     public void translate(int x, int y){
         translate_image.x += x;
         translate_image.y += y;
-        //notifyObservers();
+        notifyObservers();
     }
 
     public void changeZoom(double num){
         num_zoom += num;
-        //notifyObservers();
+        notifyObservers();
     }
 }

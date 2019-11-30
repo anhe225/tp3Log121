@@ -3,6 +3,7 @@ package Vue;
 
 
 
+import Interfaces.Observer;
 import Model.ImageModel;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class PanneauPrincipal extends JPanel {
+public class PanneauPrincipal extends JPanel implements Observer {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,6 +60,14 @@ PanneauBoutons panneauBoutons = new PanneauBoutons();
        add(bas);
 
    }
+
+
+    @Override
+    public void update() {
+
+
+        repaint();
+    }
 
 
 

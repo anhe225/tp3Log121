@@ -1,27 +1,13 @@
 package Controller;
 
- abstract class  Command  {
+import Model.ImageModel;
 
-     private Souris souris;
+abstract class  Command  {
 
-     public Command(Souris souris) {
-          super();
-         this.souris = souris;
-     }
+     protected static ImageModel img;
+     protected static  double ZOOM_EFFECT =0.2;
 
-     public Souris getSouris() {
-         return souris;
-     }
-
-     public void setSouris(Souris souris) {
-         this.souris = souris;
-     }
-
-     public  void execute(){
-
-     }
-
-     public  void undo(){
-
+     public Command(ImageModel img){
+         this.img=img;
      }
 }

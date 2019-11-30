@@ -1,5 +1,7 @@
 package Vue;
 
+import Controller.CommandPerspective;
+import Controller.GestionnaireCommande;
 import Model.ImageModel;
 
 import javax.imageio.ImageIO;
@@ -7,6 +9,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +30,7 @@ public class MenuFenetre extends JMenuBar {
     public MenuFenetre(ImageModel img) {
         this.img= img;
         ajouterMenuFichier();
+        ajouterMenuPerspective();
     }
 
     /**
@@ -55,7 +59,7 @@ public class MenuFenetre extends JMenuBar {
                     mon_image = ImageIO.read(fichierChoisi);
                     this.img.setImg(mon_image);
                     System.out.println("Chargement Image OK  : "+fichierChoisi.getAbsolutePath());
-                    //this.img.update();
+                    this.img.update();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -72,5 +76,24 @@ public class MenuFenetre extends JMenuBar {
 
         add(menuFichier);
 
+    }
+
+
+    private void ajouterMenuPerspective() {
+        JMenu menuAide = new JMenu("Perpective");
+        for(int i=0; i < img.getTabPerpective().length; i++) {
+            JMenuItem menuItem = new JMenuItem("Perspective " + (i+1));
+            menuAide.add(menuItem);
+            menuItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String strIndex = menuItem.getText().split(" ")[1];
+                    int index = Integer.parseInt(strIndex) - 1;
+                    GestionnaireCommande.getInstance().doCommand(new CommandPerspective(img, index));
+                }
+            });
+        }
+
+        add(menuAide);
     }
 }
