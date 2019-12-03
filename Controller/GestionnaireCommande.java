@@ -78,7 +78,7 @@ public class GestionnaireCommande {
     /**
      *
      */
-    public void reset(){
+    public void reboot(){
         stackYes.clear();
         stackNo.clear();
     }
@@ -87,7 +87,7 @@ public class GestionnaireCommande {
     /**
      *
      */
-    public void resetUndoStack() {
+    public void rebootUndoSatck() {
         stackYes.clear();
     }
 }

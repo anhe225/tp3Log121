@@ -2,9 +2,12 @@ package Model;
 
 public class Constantes {
 
-
-    public static String HORIZONTAL = "HORIZONTAL";
-    public static String VERTICAL = "VERTICAL";
+    public static String HAUT = "haut";
+    public static String BAS = "Bas";
+    public static String GAUCHE = "Gauche";
+    public static String DROITE = "Droite";
+    public static String ZOOM_PLUS = "plus";
+    public static String ZOOM_MOINS = "moins";
     public static String PLUS = "plus";
     public static String MOINS = "moins";
     public static  double ZOOM_EFFECT =0.15;

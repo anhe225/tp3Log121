@@ -14,7 +14,7 @@ public class CommandPerspective extends Command implements Icommand {
 
     @Override
     public void execute() {
-        GestionnaireCommande.getInstance().resetUndoStack();
+        GestionnaireCommande.getInstance().rebootUndoSatck();
         img.modifyPerspectives(index);
     }
 

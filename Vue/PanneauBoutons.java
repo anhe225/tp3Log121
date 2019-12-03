@@ -1,8 +1,10 @@
 package Vue;
 
 import ButListener.ButTranslate;
+import ButListener.ButZoomMoins;
 import ButListener.ButZoomPlus;
 import Interfaces.Observer;
+import Model.Constantes;
 import Model.ImageModel;
 
 import javax.swing.*;
@@ -37,14 +39,14 @@ public class PanneauBoutons extends JPanel  {
         Point pDroite = new Point(15,0);
 
 
-        bHaut = new JButton(new ButTranslate("haut",img,pHaut));
-        bBas = new JButton(new ButTranslate("bas",img,pBas));
-        bGauche = new JButton(new ButTranslate("gauche",img,pGauche));
-        bDroite = new JButton(new ButTranslate("droite",img,pDroite));
+        bHaut = new JButton(new ButTranslate(Constantes.HAUT,img,pHaut));
+        bBas = new JButton(new ButTranslate(Constantes.BAS,img,pBas));
+        bGauche = new JButton(new ButTranslate(Constantes.GAUCHE,img,pGauche));
+        bDroite = new JButton(new ButTranslate(Constantes.DROITE,img,pDroite));
 
 
-        bZoomPlus = new JButton(new ButZoomPlus("zoom plus",img));
-        bZoomMoins = new JButton(new ButZoomPlus("zoom moins",img));
+        bZoomPlus = new JButton(new ButZoomPlus(Constantes.ZOOM_PLUS,img));
+        bZoomMoins = new JButton(new ButZoomMoins(Constantes.ZOOM_MOINS,img));
 
 
 

@@ -1,5 +1,7 @@
 package Vue;
 
+import ButListener.ButOnLoad;
+import ButListener.ButOnSave;
 import Controller.CommandPerspective;
 import Controller.GestionnaireCommande;
 import Model.ImageModel;
@@ -18,7 +20,9 @@ public class MenuFenetre extends JMenuBar {
     private static final long serialVersionUID = 1L;
     private static final String MENU_FICHIER_TITRE = "Fichier";
     private static final String MENU_FICHIER_CHARGER = "Charger";
+    private static final String MENU_FICHIER_CHARGER_ETAT = "Charger etat";
     private static final String MENU_FICHIER_QUITTER = "Quitter";
+    private static final String MENU_FICHIER_SAUVEGARDE = "Sauvegarder";
     private static final String MENU_SIMULATION_TITRE = "Simulation";
     private static final String MENU_SIMULATION_CHOISIR = "Choisir";
     private static final String MENU_AIDE_TITRE = "Aide";
@@ -39,7 +43,10 @@ public class MenuFenetre extends JMenuBar {
     private void ajouterMenuFichier() {
         JMenu menuFichier = new JMenu(MENU_FICHIER_TITRE);
         JMenuItem menuCharger = new JMenuItem(MENU_FICHIER_CHARGER);
+        JMenuItem menuChargerEtat = new JMenuItem(MENU_FICHIER_CHARGER_ETAT);
         JMenuItem menuQuitter = new JMenuItem(MENU_FICHIER_QUITTER);
+
+        JMenuItem menuSauvegarde = new JMenuItem(MENU_FICHIER_SAUVEGARDE);
 
         menuCharger.addActionListener((ActionEvent e) -> {
             JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -66,12 +73,15 @@ public class MenuFenetre extends JMenuBar {
             }
         });
 
-
+        menuChargerEtat.addActionListener(new ButOnLoad("Charger",img));
+        menuSauvegarde.addActionListener(new ButOnSave("Sauvegarder",img));
         menuQuitter.addActionListener((ActionEvent e) -> {
             System.exit(0);
         });
 
         menuFichier.add(menuCharger);
+        menuFichier.add(menuChargerEtat);
+        menuFichier.add(menuSauvegarde);
         menuFichier.add(menuQuitter);
 
         add(menuFichier);
@@ -88,8 +98,11 @@ public class MenuFenetre extends JMenuBar {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String strIndex = menuItem.getText().split(" ")[1];
-                    int index = Integer.parseInt(strIndex) - 1;
-                    GestionnaireCommande.getInstance().doCommand(new CommandPerspective(img, index));
+                    int index = Integer.parseInt(strIndex)-1;
+
+                    System.out.println(PanneauPrincipal.tab[0].toString());
+
+                    GestionnaireCommande.getInstance().doCommand(new CommandPerspective(PanneauPrincipal.tab[index], index));
                 }
             });
         }

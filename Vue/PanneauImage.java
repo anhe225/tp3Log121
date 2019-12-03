@@ -2,6 +2,7 @@ package Vue;
 
 import Controller.PerpectiveController;
 import Interfaces.Observer;
+import Model.Constantes;
 import Model.ImageModel;
 import Model.ImgPerspective;
 
@@ -18,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class PanneauImage extends JPanel implements Observer {
+public class PanneauImage extends JPanel  {
 
     private ImageModel imageModel;
     private PerpectiveController perpectiveController;
@@ -26,8 +27,8 @@ public class PanneauImage extends JPanel implements Observer {
 
         this.imageModel=imageModel;
         this.perpectiveController = new PerpectiveController(this.imageModel);
-        setFocusable(true);
-        operation();
+        //setFocusable(true);
+       // operation();
     }
 
     public void operation()
@@ -43,7 +44,7 @@ public class PanneauImage extends JPanel implements Observer {
         super.paint(g);
 
         if(imageModel.getImg() == null) {
-            System.out.println("no image");
+            System.out.println(Constantes.FICHIER_INTROUVABLE);
             return;
         }
 
@@ -51,17 +52,19 @@ public class PanneauImage extends JPanel implements Observer {
 
         ImgPerspective perspective = imageModel.getMyPerspective();
 
-        int width = (int)(image.getWidth() * perspective.getNum_zoom());
-        int height = (int)(image.getHeight() * perspective.getNum_zoom());
+       // int width = (int)(image.getWidth() * perspective.getNum_zoom());
+      //  int height = (int)(image.getHeight() * perspective.getNum_zoom());
 
-        int x = perspective.getTranslate_image().x;
-        int y = perspective.getTranslate_image().y;
+       // int x = perspective.getTranslate_image().x;
+       // int y = perspective.getTranslate_image().y;
 
-        g.drawImage(image,x,y,width,height,null);
+       // g.drawImage(image,x,y,width,height,null);
+
+        g.drawImage(image,30,10,200,200,null);
     }
 
-    @Override
-    public void update() {
-        repaint();
-    }
+    //@Override
+    //public void update() {
+  //      repaint();
+  //  }
 }

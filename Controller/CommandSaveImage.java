@@ -18,7 +18,8 @@ public class CommandSaveImage extends Command implements Icommand {
         try {
             LocalDateTime date = LocalDateTime.now();
             String repertoire = System.getProperty(Constantes.SYSTEM_REPERTOIRE);
-            String fileName = repertoire + System.getProperty(Constantes.FILE_SEPARATOR) + date + Constantes.TYPE_FICHIER;
+            String fileName = repertoire + System.getProperty(Constantes.FILE_SEPARATOR) +
+                    date + Constantes.TYPE_FICHIER;
             File file = new File(fileName);
             file.createNewFile();
             FileOutputStream f = new FileOutputStream(file);

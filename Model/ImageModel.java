@@ -60,6 +60,8 @@ public class ImageModel extends Subject implements Serializable, Observer {
         return tabPerpective[index];
     }
 
+
+
     public void setSize(int largeur, int longueur)
     {
         this.img = new BufferedImage(largeur, longueur, img.TYPE_INT_ARGB);

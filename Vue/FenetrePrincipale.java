@@ -23,6 +23,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener,
     private ImageModel img;
     private ImgPerspective img_perspective;
     private PanneauImage panneauImage;
+    private PanneauPerspective panneauPerspective;
 
     public FenetrePrincipale() {
         getImage();
@@ -36,7 +37,8 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener,
         img.Attach(this);
 
         panneauImage=new PanneauImage(img);
-
+        img_perspective = new ImgPerspective(img);
+        panneauPerspective = new PanneauPerspective(img);
 
 
 
@@ -86,7 +88,8 @@ public void getImage(){
     @Override
     public void update() {
         System.out.println("ANhe");
-        panneauImage.update();
+        //panneauImage.update();
+        panneauPerspective.update();
         repaint();
     }
 }
